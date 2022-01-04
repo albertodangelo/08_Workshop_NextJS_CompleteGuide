@@ -1,10 +1,9 @@
 import React, { Fragment } from "react";
-import FeaturedPosts from "../components/home-page/featured-posts";
-import Hero from "../components/home-page/hero";
-import { getFeaturedPosts } from "../lib/posts-util";
+import AllPosts from "../../components/posts/all-posts";
+import { getAllPosts } from "../../lib/posts-util";
 import Head from "next/head";
-
-/* const DUMMY_POSTS = [
+/* 
+const DUMMY_POSTS = [
   {
     slug: "getting-started-with-nextjs",
     title: "Getting started with NextJS",
@@ -26,32 +25,32 @@ import Head from "next/head";
     excerpt: "NextJS ist the framework for production",
     date: "2021-10-12",
   },
-]; */
-
-const HomePage = (props) => {
-  console.log(props.posts);
-
+];
+ */
+const AllPostsPage = (props) => {
+  /*  return <AllPosts posts={DUMMY_POSTS} />; */
   return (
     <Fragment>
       <Head>
-        <title>Welcome to my blog</title>
-        <meta name="description" content="I post about web and programming" />
+        <title>All my posts</title>
+        <meta
+          name="description"
+          content="A list of all programming related tutorials and posts!"
+        />
       </Head>
-      <Hero />
-      <FeaturedPosts posts={props.posts} />
-      {/* <FeaturedPosts posts={DUMMY_POSTS} /> */}
+      <AllPosts posts={props.allPosts} />;
     </Fragment>
   );
 };
 
 export function getStaticProps() {
-  const featuredPosts = getFeaturedPosts();
+  const posts = getAllPosts();
 
   return {
     props: {
-      posts: featuredPosts,
+      allPosts: posts,
     },
   };
 }
 
-export default HomePage;
+export default AllPostsPage;
